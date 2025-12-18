@@ -1,0 +1,176 @@
+<head>
+    <title>将棋</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./syougi.css">
+    <style>
+        .hyou th,
+        .hyou td{
+            border: 1px solid #111;
+        }
+        .motigoma th,
+        .motigoma td{
+            border: 1px solid #111;
+        }
+    </style>
+</head>
+<body>
+    <!--横に整列-->
+    <div class="yoko">
+        <!--透明な四角形で位置調整-->
+        <div class="toumei3"></div>
+        <!--先手の時間表示-->
+        <p>先手　　</p><p id="zikan1"></p>
+        <input type="button" value="start" onclick="StartButton()">
+        <div class="toumei1"></div>
+        <!--リセットボタン-->
+        <button class="reset" onclick="resetbutton()">リセット</button>
+    </div>
+    <div class="yoko">
+        <div class="toumei3"></div>
+        <!--後手の時間表示-->
+        <p>後手</p>
+    </div>
+    <div class="yoko">
+        <!--先手の持ち駒の表示-->
+        <table class="motigoma rotate">
+            <tr align="center">
+                <td class="motigomaookisa">歩<br>0</td>
+                <td class="motigomaookisa">香<br>0</td>
+                <td class="motigomaookisa">桂<br>0</td>
+            </tr>
+            <tr align="center">
+                <td class="motigomaookisa">銀<br>0</td>
+                <td class="motigomaookisa">金<br>0</td>
+                <td class="motigomaookisa">角<br>0</td>
+            </tr>
+            <tr align="center">
+                <td class="motigomaookisa">飛<br>0</td>
+                <td class="motigomaookisa">先手</td>
+            </tr>
+        </table>
+        <!--９×９の盤の表示-->
+        <table class="hyou">
+            <tr align="center">
+                <td><button class="toumeibutton" id="00" data-C="0" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="01" data-C="0" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="02" data-C="0" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="03" data-C="0" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="04" data-C="0" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="05" data-C="0" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="06" data-C="0" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="07" data-C="0" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="08" data-C="0" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="10" data-C="1" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="11" data-C="1" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="12" data-C="1" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="13" data-C="1" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="14" data-C="1" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="15" data-C="1" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="16" data-C="1" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="17" data-C="1" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="18" data-C="1" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="20" data-C="2" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="21" data-C="2" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="22" data-C="2" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="23" data-C="2" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="24" data-C="2" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="25" data-C="2" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="26" data-C="2" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="27" data-C="2" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="28" data-C="2" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="30" data-C="3" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="31" data-C="3" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="32" data-C="3" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="33" data-C="3" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="34" data-C="3" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="35" data-C="3" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="36" data-C="3" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="37" data-C="3" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="38" data-C="3" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="40" data-C="4" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="41" data-C="4" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="42" data-C="4" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="43" data-C="4" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="44" data-C="4" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="45" data-C="4" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="46" data-C="4" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="47" data-C="4" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="48" data-C="4" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="50" data-C="5" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="51" data-C="5" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="52" data-C="5" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="53" data-C="5" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="54" data-C="5" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="55" data-C="5" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="56" data-C="5" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="57" data-C="5" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="58" data-C="5" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="60" data-C="6" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="61" data-C="6" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="62" data-C="6" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="63" data-C="6" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="64" data-C="6" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="65" data-C="6" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="66" data-C="6" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="67" data-C="6" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="68" data-C="6" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="70" data-C="7" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="71" data-C="7" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="72" data-C="7" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="73" data-C="7" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="74" data-C="7" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="75" data-C="7" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="76" data-C="7" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="77" data-C="7" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="78" data-C="7" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+            <tr align="center">
+                <td><button class="toumeibutton" id="80" data-C="8" data-L="0" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="81" data-C="8" data-L="1" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="82" data-C="8" data-L="2" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="83" data-C="8" data-L="3" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="84" data-C="8" data-L="4" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="85" data-C="8" data-L="5" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="86" data-C="8" data-L="6" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="87" data-C="8" data-L="7" onclick="onclickkoma();idoukoma()"></button></td>
+                <td><button class="toumeibutton" id="88" data-C="8" data-L="8" onclick="onclickkoma();idoukoma()"></button></td>
+            </tr>
+        </table>
+        <!--縦に整列-->
+        <div class="tate">
+            <div class="toumei2"></div>
+            <!--後手の持ち駒-->
+            <table class="motigoma">
+                <tr align="center">
+                    <td class="motigomaookisa">歩<br>0</td>
+                    <td class="motigomaookisa">香<br>0</td>
+                    <td class="motigomaookisa">桂<br>0</td>
+                </tr>
+                <tr align="center">
+                    <td class="motigomaookisa">銀<br>0</td>
+                    <td class="motigomaookisa">金<br>0</td>
+                    <td class="motigomaookisa">角<br>0</td>
+                </tr>
+                <tr align="center">
+                    <td class="motigomaookisa">飛<br>0</td>
+                    <td class="motigomaookisa">後手</td>
+                </tr>
+            </table>
+        </div>   
+    </div>
+    <script src="./Syougi.js"></script>
+</body>
